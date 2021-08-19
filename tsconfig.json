@@ -3,7 +3,14 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
+    "outDir": "./dist/",
+    "paths": {
+      "@core/*": [ "src/app/core/*" ],
+      "@pages/*": [ "src/app/pages/*" ],
+      "@features/*": [ "src/app/features/*" ]
+    },
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,

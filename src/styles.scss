@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+
+  .left, .right {
+    display: inline-block;
+    width: calc(50% - 1em);
+  }
+}
+.wrapper.center {
+  height: 100vh;
+  align-items: center;
+}
+
+.btn {
+  background: #9af946;
+  background-image: linear-gradient(to bottom, #9af946, #72ba32);
+  border-radius: 10px;
+  font-family: Arial;
+  color: #000000;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #72ba32;
+  background-image: linear-gradient(to bottom, #72ba32, #9af946);
+  text-decoration: none;
+}
+
+.input--text {
+  border: 5px solid white; 
+  box-shadow: 
+    inset 0 0 8px  rgba(0,0,0,0.1),
+          0 0 16px rgba(0,0,0,0.1); 
+  padding: 15px;
+  background: rgba(255,255,255,0.5);
+  margin: 0 0 10px 0;
+  width: 35%
+}

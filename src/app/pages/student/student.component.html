@@ -1,0 +1,16 @@
+
+<div class="wrapper center">
+  <div class="get-name" *ngIf="!submitted">
+    <input class="input--text" type="text" [(ngModel)]="username" />
+    <button class="btn" (click)="sendStudentName()">Submit</button>
+  </div>
+
+  <div class="student" *ngIf="received">
+    <div class="card-image">
+      <img [src]="getCardPath(card)" />
+    </div>
+    <div class="name">
+      {{ username }}
+    </div>
+  </div>
+</div>
