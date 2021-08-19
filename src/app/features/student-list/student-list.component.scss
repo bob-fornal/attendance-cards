@@ -13,6 +13,7 @@
     padding-bottom: 0.25em;
     padding-top: 0.5em;
     padding-left: 0.5em;
+    position: relative;
 
     .thumbnail {
       display: inline-block;
@@ -20,6 +21,11 @@
     }
     .name {
       display: inline-block;
+    }
+    .tools {
+      cursor: pointer;
+      position: absolute;
+      right: 1em;
     }
   }
 

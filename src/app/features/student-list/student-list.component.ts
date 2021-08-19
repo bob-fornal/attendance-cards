@@ -35,19 +35,23 @@ export class StudentListComponent implements OnInit {
       this.students.push({ name: student, card: card, winner: false });
       this.changeDetection.detectChanges();
 
-      this.broadcast.publish({
-        type: 'admin', payload: [ ...this.students ]
-      });
+      this.publishStudents();
     });
 
     this.broadcast.errorHandler().subscribe((error: Event) => {
-      this.toastr.error('WebSocket Issue', JSON.stringify(error));
+      this.toastr.error('WebSocket Issue', 'Unhandled');
     });
   }
 
   ngOnInit(): void {
     this.generateCards();
   }
+
+  publishStudents = () => {
+    this.broadcast.publish({
+      type: 'admin', payload: [ ...this.students ]
+    });
+  };
 
   trackItem (index: number) {
     return index;
@@ -64,7 +68,7 @@ export class StudentListComponent implements OnInit {
 
   selectWinner = () => {
     this.selected = true;
-    const index = this.randomIntFromInterval(0, this.students.length - 1);
+    const index: number = this.randomIntFromInterval(0, this.students.length - 1);
     this.students[index].winner = true;
   };
 
@@ -93,6 +97,13 @@ export class StudentListComponent implements OnInit {
     const file: Blob = new Blob([list], { type: 'text/plain;charset=utf-8' });
     const filename = `attendees--${ new Date().toISOString().substr(0, 10) }.txt`
     this.fileSaver.save(file, filename);
+  };
+
+  deleteUser = (student: Student) => {
+    const index: number = this.students.findIndex((item: Student) => item.name === student.name);
+    this.students.splice(index, 1);
+    this.cards.splice(0, 0, student.card);
+    this.publishStudents();
   };
 
 }

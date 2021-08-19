@@ -1,7 +1,7 @@
 
 <div class="wrapper center">
   <div class="get-name" *ngIf="!submitted">
-    <input class="input--text" placeholder="Your Name" type="text" [(ngModel)]="username" />
+    <input class="input--text" placeholder="Your Name" type="text" [(ngModel)]="username" (keyup.enter)="sendStudentName()" />
     <button class="btn" (click)="sendStudentName()">Submit</button>
   </div>
 
