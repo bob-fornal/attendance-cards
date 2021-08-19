@@ -12,7 +12,7 @@ export class QrCodeComponent {
 
   cards: any = cards;
 
-  src: string = 'http://localhost:4200/student';
+  src: string = 'hhttps://bit.ly/attend-cards';
   eddie: string = this.cards.cloudinary.guitar;
 
   constructor() {
