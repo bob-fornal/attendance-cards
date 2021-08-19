@@ -12,6 +12,9 @@ body {
     display: inline-block;
     width: calc(50% - 1em);
   }
+  .right {
+    text-align: center;
+  }
 }
 .wrapper.center {
   height: 100vh;
