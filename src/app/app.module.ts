@@ -1,9 +1,12 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { QrCodeModule } from 'ng-qrcode';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { FileSaverModule } from 'ngx-filesaver';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +33,10 @@ import { BroadcastService } from '@core/services/broadcast-channel.service';
     AppRoutingModule,
 
     FormsModule,
-    QrCodeModule
+    QrCodeModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    FileSaverModule
   ],
   providers: [
     BroadcastService,

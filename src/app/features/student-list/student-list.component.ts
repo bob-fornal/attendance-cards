@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { BroadcastMessage, BroadcastService } from '@core/services/broadcast-channel.service';
+import { ToastrService } from 'ngx-toastr';
+import { FileSaverService } from 'ngx-filesaver';
 
 import { Student } from '@core/interfaces/student';
 
@@ -21,8 +23,10 @@ export class StudentListComponent implements OnInit {
   selected: boolean = false;
 
   constructor(
-    public broadcast: BroadcastService,
-    private changeDetection: ChangeDetectorRef
+    private broadcast: BroadcastService,
+    private changeDetection: ChangeDetectorRef,
+    private toastr: ToastrService,
+    private fileSaver: FileSaverService
   ) {
     this.broadcast.messagesOfType('student').subscribe((message: BroadcastMessage) => {
       const student: string = message.payload;
@@ -34,7 +38,10 @@ export class StudentListComponent implements OnInit {
       this.broadcast.publish({
         type: 'admin', payload: [ ...this.students ]
       });
-      console.log(this.students);
+    });
+
+    this.broadcast.errorHandler().subscribe((error: Event) => {
+      this.toastr.error('WebSocket Issue', JSON.stringify(error));
     });
   }
 
@@ -75,6 +82,17 @@ export class StudentListComponent implements OnInit {
     const card = this.cards[index];
     this.cards.splice(index, 1);
     return card;
+  };
+
+  storeAttendees = () => {
+    let attendees: Array<string> = [];
+    this.students.forEach((student: Student) => {
+      attendees.push(student.name);
+    });
+    const list: string = attendees.join('\n');
+    const file: Blob = new Blob([list], { type: 'text/plain;charset=utf-8' });
+    const filename = `attendees--${ new Date().toISOString().substr(0, 10) }.txt`
+    this.fileSaver.save(file, filename);
   };
 
 }

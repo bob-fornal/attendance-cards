@@ -33,7 +33,15 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "file-saver",
+              "qrcode",
+
+              "ng-qrcode",
+              "ngx-toastr",
+              "ngx-filesaver"
+            ]
           },
           "configurations": {
             "production": {

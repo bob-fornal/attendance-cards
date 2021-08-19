@@ -1,5 +1,6 @@
 
 <div class="students-wrapper">
+
   <div class="student"
     *ngFor="let student of students; trackBy: trackItem"
     [class.winner]="student.winner">
@@ -16,4 +17,11 @@
       <button class="btn" (click)="selectWinner()">Select Winner</button>
     </div>
   </div>
+
+  <div class="winner-wrapper" *ngIf="!!selected">
+    <div class="select">
+      <button class="btn" (click)="storeAttendees()">Capture Attendees</button>
+    </div>
+  </div>
+
 </div>

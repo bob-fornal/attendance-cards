@@ -25,7 +25,7 @@ export class BroadcastService {
         payload: ''
       };
       this.publish(initMessage);
-    };    
+    };
   }
 
   messagesOfType = (type: string): Observable<BroadcastMessage> => {
@@ -35,9 +35,17 @@ export class BroadcastService {
         if (event.type === type) {
           observer.next(event);
         }
-      }
+      };
     });
-  }
+  };
+
+  errorHandler = (): Observable<Event> => {
+    return new Observable(observer => {
+      this.websocket.onerror = (event: Event) => {
+        observer.next(event);
+      };
+    });
+  };
 
   publish = (message: BroadcastMessage) => {
     this.websocket.send(JSON.stringify(message));

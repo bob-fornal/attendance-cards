@@ -15,10 +15,6 @@ export class QrCodeComponent {
   src: string = 'https://bit.ly/attend-cards';
   eddie: string = this.cards.cloudinary.guitar;
 
-  constructor() {
-    // const url = new URL(window.location.toString());
-    // const host = new URL('/student', url.origin);
-    // this.src = host.href;
-  }
+  constructor() { }
 
 }
