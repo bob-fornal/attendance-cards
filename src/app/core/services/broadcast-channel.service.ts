@@ -17,7 +17,7 @@ export class BroadcastService {
   }
 
   connectWebSocket = (): void => {
-    const CLUSTER_ID: string = 'us-nyc-1';
+    const CLUSTER_ID: string = 'us-nyc-2';
     const CHANNEL_ID: string = '1';
     const API_KEY: string = 'kbfzwq1taOwqDyw7GjgDZDZCd6QByYU8uC2B6kGj';
 

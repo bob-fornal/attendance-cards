@@ -30,11 +30,20 @@ export class StudentComponent implements OnInit {
     this.titleService.setTitle('Attendance: Student');
 
     this.broadcast.messagesOfType('admin').subscribe((message: BroadcastMessage) => {
+      console.log(message);
       const students: Array<Student> = message.payload;
       
-      let student: Student = students.filter((value) => (value.name === this.username))[0];
-      this.card = student.card;
-      this.received = true;
+      const sameName = students.filter(value => (value.name === this.username));
+      if (sameName.length === 0) {
+        this.username = '';
+        this.card = '';
+        this.submitted = false;
+        this.received = false;
+      } else {
+        let student: Student = students.filter((value) => (value.name === this.username))[0];
+        this.card = student.card;
+        this.received = true;  
+      }
     });
   }
 
