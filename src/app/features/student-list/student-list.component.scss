@@ -2,39 +2,52 @@
 .students-wrapper {
   padding: 2em;
 
-  .winner-wrapper {
-    margin-top: 2em;
-  }
+  .toolbar {
+    background-color: silver;
+    border: gray;
+    padding: 0.5em 1em;
 
-  .student {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 0.25em;
-    padding-top: 0.5em;
-    padding-left: 0.5em;
-    position: relative;
-
-    .thumbnail {
-      display: inline-block;
+    .display-number {
       padding-right: 1em;
-    }
-    .name {
-      display: inline-block;
-    }
-    .tools {
-      cursor: pointer;
-      position: absolute;
-      right: 1em;
-    }
+    }  
   }
 
-  .student:not(:last-of-type) {
-    border-bottom: 1px solid silver;
-  }
+  .students--scroll-wrapper {
+    height: calc(100vh - 11em);
+    overflow-y: scroll;
+    border: 1px solid gray;
+    margin-top: 1em;
 
-  .student.winner {
-    background-color: #9af946;
-    border: 1px solid black;
+    .student {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 0.25em;
+      padding-top: 0.5em;
+      padding-left: 0.5em;
+      position: relative;
+  
+      .thumbnail {
+        display: inline-block;
+        padding-right: 1em;
+      }
+      .name {
+        display: inline-block;
+      }
+      .tools {
+        cursor: pointer;
+        position: absolute;
+        right: 1em;
+      }
+    }
+  
+    .student:not(:last-of-type) {
+      border-bottom: 1px solid silver;
+    }
+  
+    .student.winner {
+      background-color: #9af946;
+      border: 1px solid black;
+    }
   }
 }

@@ -1,27 +1,24 @@
 
 <div class="students-wrapper">
 
-  <div class="student"
-    *ngFor="let student of students; trackBy: trackItem"
-    [class.winner]="student.winner">
-    <div class="thumbnail">
-      <img [src]="getCardPath(student.card)" />
-    </div>
-    <div class="name">
-      {{ student.name }}
-    </div>
-    <div class="tools" (click)="deleteUser(student)">X</div>
+  <div class="toolbar">
+    <span class="display-number">{{ students.length }} {{ students.length === 1 ? 'Attendee' : 'Attendees' }}</span>
+
+    <button class="btn" *ngIf="!selected" (click)="selectWinner()">Select Winner</button>
+    <button class="btn" *ngIf="!!selected" (click)="storeAttendees()">Capture Attendees</button>
   </div>
 
-  <div class="winner-wrapper" *ngIf="!selected">
-    <div class="select">
-      <button class="btn" (click)="selectWinner()">Select Winner</button>
-    </div>
-  </div>
-
-  <div class="winner-wrapper" *ngIf="!!selected">
-    <div class="select">
-      <button class="btn" (click)="storeAttendees()">Capture Attendees</button>
+  <div class="students--scroll-wrapper">
+    <div class="student"
+      *ngFor="let student of students; trackBy: trackItem"
+      [class.winner]="student.winner">
+      <div class="thumbnail">
+        <img [src]="getCardPath(student.card)" />
+      </div>
+      <div class="name">
+        {{ student.name }}
+      </div>
+      <div class="tools" (click)="deleteUser(student)">X</div>
     </div>
   </div>
 
