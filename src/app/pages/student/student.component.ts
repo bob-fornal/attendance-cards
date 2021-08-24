@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 
 import { Student } from '@core/interfaces/student';
 
-import { BroadcastMessage, BroadcastService } from '@core/services/broadcast-channel.service';
+import { SocketMessage, SocketService } from '@core/services/socket.service';
 
 import config from '@core/constants/cards.json';
 
@@ -24,13 +24,12 @@ export class StudentComponent implements OnInit {
   received: boolean = false;
 
   constructor(
-    private broadcast: BroadcastService,
+    private broadcast: SocketService,
     private titleService: Title
   ) {
     this.titleService.setTitle('Attendance: Student');
 
-    this.broadcast.messagesOfType('admin').subscribe((message: BroadcastMessage) => {
-      console.log(message);
+    this.broadcast.messagesOfType('admin').subscribe((message: SocketMessage) => {
       const students: Array<Student> = message.payload;
       
       const sameName = students.filter(value => (value.name === this.username));
@@ -53,7 +52,7 @@ export class StudentComponent implements OnInit {
     this.submitted = true;
 
     const name: string = this.username;
-    const message: BroadcastMessage = {
+    const message: SocketMessage = {
       type: 'student', payload: name
     };
     this.broadcast.publish(message);

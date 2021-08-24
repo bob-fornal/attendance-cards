@@ -2,13 +2,13 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
  
-export interface BroadcastMessage {
+export interface SocketMessage {
   type: string;
   payload: any;
 };
  
 @Injectable()
-export class BroadcastService {
+export class SocketService {
 
   websocket: any;
   
@@ -25,7 +25,7 @@ export class BroadcastService {
       this.websocket = new WebSocket(`wss://${ CLUSTER_ID }.piesocket.com/v3/${ CHANNEL_ID }?api_key=${ API_KEY }`);
 
       this.websocket.onopen = () => {
-        const initMessage: BroadcastMessage = {
+        const initMessage: SocketMessage = {
           type: 'initial',
           payload: ''
         };
@@ -36,10 +36,10 @@ export class BroadcastService {
     }
   };
 
-  messagesOfType = (type: string): Observable<BroadcastMessage> => {
+  messagesOfType = (type: string): Observable<SocketMessage> => {
     return new Observable(observer => {
       this.websocket.onmessage = (eventString: MessageEvent) => {
-        const event: BroadcastMessage = JSON.parse(eventString.data);
+        const event: SocketMessage = JSON.parse(eventString.data);
         if (event.type === type) {
           observer.next(event);
         }
@@ -55,7 +55,7 @@ export class BroadcastService {
     });
   };
 
-  publish = (message: BroadcastMessage) => {
+  publish = (message: SocketMessage) => {
     try {
       this.websocket.send(JSON.stringify(message));
     } catch (error) {

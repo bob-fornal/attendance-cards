@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BroadcastChannelService } from './broadcast-channel.service';
+import { SocketService } from './socket.service';
 
 describe('BroadcastChannelService', () => {
-  let service: BroadcastChannelService;
+  let service: SocketService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BroadcastChannelService);
+    service = TestBed.inject(SocketService);
   });
 
   it('should be created', () => {

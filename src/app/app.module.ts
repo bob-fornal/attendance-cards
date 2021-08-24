@@ -17,7 +17,7 @@ import { StudentComponent } from './pages/student/student.component';
 import { QrCodeComponent } from './features/qr-code/qr-code.component';
 import { StudentListComponent } from './features/student-list/student-list.component';
 
-import { BroadcastService } from '@core/services/broadcast-channel.service';
+import { SocketService } from '@core/services/socket.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { BroadcastService } from '@core/services/broadcast-channel.service';
     FileSaverModule
   ],
   providers: [
-    BroadcastService,
+    SocketService,
     Title
   ],
   bootstrap: [

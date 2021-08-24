@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
-import { BroadcastMessage, BroadcastService } from '@core/services/broadcast-channel.service';
+import { SocketMessage, SocketService } from '@core/services/socket.service';
 import { ToastrService } from 'ngx-toastr';
 import { FileSaverService } from 'ngx-filesaver';
 
@@ -23,12 +23,12 @@ export class StudentListComponent implements OnInit {
   selected: boolean = false;
 
   constructor(
-    private broadcast: BroadcastService,
+    private broadcast: SocketService,
     private changeDetection: ChangeDetectorRef,
     private toastr: ToastrService,
     private fileSaver: FileSaverService
   ) {
-    this.broadcast.messagesOfType('student').subscribe((message: BroadcastMessage) => {
+    this.broadcast.messagesOfType('student').subscribe((message: SocketMessage) => {
       const student: string = message.payload;
       const card: string = this.pickACard();
       
